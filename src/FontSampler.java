@@ -9,35 +9,61 @@ import java.awt.GraphicsEnvironment;
 //Homework:   2
 //Course:     CS-245-01-w18
 //
-//Description:
-//
+//Description: This program allows a user to input characters into a
+//             text box and chose an available font to customize the
+//             output text.
 
 public class FontSampler {
 
     JFrame jfrm;
     JList jlst;
-    JLabel jlab;
     JScrollPane jscrlp;
+    JLabel finalSampleText;
+    JTextField input;
 
-    public FontSampler() {
+    public FontSampler(String val) {
         generateFrame();
         getListOfFontsAndAddToList();
+        System.out.println(val);
 
+        if(!val.equals("")) {
+            input = new JTextField(val);
+            finalSampleText = new JLabel(val);
+        } else {
+            input = new JTextField();
+            finalSampleText = new JLabel("Anthony Vu");
+        }
 
         JPanel topArea = new JPanel(new GridLayout(2,1));
         JLabel sampleTextTop = new JLabel("Sample text: ");
-        JTextField input = new JTextField();
+        sampleTextTop.setDisplayedMnemonic('S');
+        sampleTextTop.setLabelFor(input);
         topArea.add(sampleTextTop);
         topArea.add(input);
 
+        input.addActionListener((ActionEvent e)-> {
+                String text = e.getActionCommand();
+                finalSampleText.setText(text);
+            }
+        );
+
         JPanel middleArea = new JPanel(new GridLayout(2,1));
         JLabel fonts = new JLabel("Fonts");
+        fonts.setDisplayedMnemonic('F');
+        fonts.setLabelFor(jlst);
         middleArea.add(fonts);
         middleArea.add(jscrlp);
 
-        JPanel bottomArea = new JPanel(new FlowLayout());
-        JLabel finalSampleText = new JLabel("Anthony Vu");
+        jlst.addListSelectionListener((ListSelectionEvent le) -> {
+            String font = jlst.getSelectedValue().toString();
+            finalSampleText.setFont(new Font(font, Font.PLAIN, 24));
+            finalSampleText.setText(input.getText());
 
+        });
+
+        JPanel bottomArea = new JPanel(new FlowLayout());
+        //this is where anthony should go
+        bottomArea.add(finalSampleText);
 
         jfrm.add(topArea);
         jfrm.add(middleArea);
@@ -66,11 +92,17 @@ public class FontSampler {
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfrm.setVisible(true);
         jfrm.setLocationRelativeTo(null);
+
     }
 
     public static void main(String args[]){
         SwingUtilities.invokeLater(() -> {
-            new FontSampler();
+            StringBuilder sb = new StringBuilder();
+            if(args.length > 0){
+                for(String s : args)
+                    sb.append(s);
+            }
+            new FontSampler(sb.toString());
         });
 
     }
