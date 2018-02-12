@@ -23,9 +23,8 @@ public class FontSampler {
 
     public FontSampler(String val) {
         generateFrame();
-
         getListOfFontsAndAddToList();
-        System.out.println(val);
+        //System.out.println(val);
 
         if(!val.equals("")) {
             input = new JTextField(val);
@@ -52,19 +51,17 @@ public class FontSampler {
 
         JPanel middleArea = new JPanel();
         middleArea.setLayout(new BoxLayout(middleArea, BoxLayout.Y_AXIS));
-        JLabel fonts = new JLabel("Fonts: ");
+        JLabel fonts = new JLabel("Fonts:                                                ");
         fonts.setDisplayedMnemonic('F');
         fonts.setLabelFor(jlst);
         middleArea.add(fonts);
         middleArea.add(jscrlp);
         fonts.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //fonts.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,20,0,0));
 
         jlst.addListSelectionListener((ListSelectionEvent le) -> {
             String font = jlst.getSelectedValue().toString();
             finalSampleText.setFont(new Font(font, Font.PLAIN, 24));
             finalSampleText.setText(input.getText());
-
         });
 
         JPanel bottomArea = new JPanel(new FlowLayout());
@@ -75,7 +72,6 @@ public class FontSampler {
         jfrm.add(topArea);
         jfrm.add(middleArea);
         jfrm.add(bottomArea);
-
 
     }
 
@@ -100,7 +96,6 @@ public class FontSampler {
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfrm.setVisible(true);
         jfrm.setLocationRelativeTo(null);
-
     }
 
     public static void main(String args[]){
@@ -114,5 +109,4 @@ public class FontSampler {
         });
 
     }
-
 }
