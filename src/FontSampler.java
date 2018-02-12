@@ -28,10 +28,10 @@ public class FontSampler {
 
         if(!val.equals("")) {
             input = new JTextField(val);
-            finalSampleText = new JLabel(val);
+            finalSampleText = new JLabel(val, JLabel.CENTER);
         } else {
             input = new JTextField();
-            finalSampleText = new JLabel("Anthony Vu");
+            finalSampleText = new JLabel("Anthony Vu", JLabel.CENTER);
         }
 
         JPanel topArea = new JPanel(new GridLayout(2,1));
@@ -64,6 +64,7 @@ public class FontSampler {
         JPanel bottomArea = new JPanel(new FlowLayout());
         //this is where anthony should go
         bottomArea.add(finalSampleText);
+        bottomArea.setBackground(Color.lightGray);
 
         jfrm.add(topArea);
         jfrm.add(middleArea);
@@ -81,7 +82,7 @@ public class FontSampler {
 
         jlst = new JList(lm);
         jscrlp = new JScrollPane(jlst);
-        jscrlp.setPreferredSize(new Dimension(200,100));
+        jscrlp.setPreferredSize(new Dimension(300,400));
 
     }
 
