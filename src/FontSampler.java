@@ -23,6 +23,7 @@ public class FontSampler {
 
     public FontSampler(String val) {
         generateFrame();
+
         getListOfFontsAndAddToList();
         System.out.println(val);
 
@@ -34,12 +35,14 @@ public class FontSampler {
             finalSampleText = new JLabel("Anthony Vu", JLabel.CENTER);
         }
 
-        JPanel topArea = new JPanel(new GridLayout(2,1));
+        JPanel topArea = new JPanel();
+        topArea.setLayout(new BoxLayout(topArea, BoxLayout.Y_AXIS));
         JLabel sampleTextTop = new JLabel("Sample text: ");
         sampleTextTop.setDisplayedMnemonic('S');
         sampleTextTop.setLabelFor(input);
         topArea.add(sampleTextTop);
         topArea.add(input);
+        //sampleTextTop.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         input.addActionListener((ActionEvent e)-> {
                 String text = e.getActionCommand();
@@ -47,12 +50,14 @@ public class FontSampler {
             }
         );
 
-        JPanel middleArea = new JPanel(new GridLayout(2,1));
-        JLabel fonts = new JLabel("Fonts");
+        JPanel middleArea = new JPanel();
+        middleArea.setLayout(new BoxLayout(middleArea, BoxLayout.Y_AXIS));
+        JLabel fonts = new JLabel("Fonts: ");
         fonts.setDisplayedMnemonic('F');
         fonts.setLabelFor(jlst);
         middleArea.add(fonts);
         middleArea.add(jscrlp);
+        fonts.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         jlst.addListSelectionListener((ListSelectionEvent le) -> {
             String font = jlst.getSelectedValue().toString();
@@ -88,8 +93,9 @@ public class FontSampler {
 
     public void generateFrame() {
         jfrm = new JFrame("Font Sampler");
-        jfrm.setLayout(new GridLayout(3,1));
-        jfrm.setSize(300,500);
+        BoxLayout boxLayout = new BoxLayout(jfrm.getContentPane(), BoxLayout.Y_AXIS);
+        jfrm.setLayout(boxLayout);
+        jfrm.setSize(400,500);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfrm.setVisible(true);
         jfrm.setLocationRelativeTo(null);
