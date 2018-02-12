@@ -42,7 +42,7 @@ public class FontSampler {
         sampleTextTop.setLabelFor(input);
         topArea.add(sampleTextTop);
         topArea.add(input);
-        //sampleTextTop.setAlignmentX(Component.LEFT_ALIGNMENT);
+        sampleTextTop.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         input.addActionListener((ActionEvent e)-> {
                 String text = e.getActionCommand();
@@ -58,6 +58,7 @@ public class FontSampler {
         middleArea.add(fonts);
         middleArea.add(jscrlp);
         fonts.setAlignmentX(Component.LEFT_ALIGNMENT);
+        //fonts.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,20,0,0));
 
         jlst.addListSelectionListener((ListSelectionEvent le) -> {
             String font = jlst.getSelectedValue().toString();
@@ -95,7 +96,7 @@ public class FontSampler {
         jfrm = new JFrame("Font Sampler");
         BoxLayout boxLayout = new BoxLayout(jfrm.getContentPane(), BoxLayout.Y_AXIS);
         jfrm.setLayout(boxLayout);
-        jfrm.setSize(400,500);
+        jfrm.setSize(300,500);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfrm.setVisible(true);
         jfrm.setLocationRelativeTo(null);
